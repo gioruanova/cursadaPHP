@@ -2,7 +2,7 @@
 
 require_once('funcion_menu.php');
 
-$categoria = isset($_GET['categoria']) ? $_GET['categoria'] : null;
+$categoria = $_GET['categoria'] ?? null;
 $lista_menu = getMenu($categoria);
 $categorias = getCategoriasMenu();
 
