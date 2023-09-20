@@ -95,10 +95,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </ul>
 
             <label for="nombre" class="form-label mt-3">Nombre: </label>
-            <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $nombre ?>">
+            <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $nombre ?>" required>
 
             <label for="email" class="form-label mt-3">Email: </label>
-            <input type="email" id="email" name="email" class="form-control" value="<?php echo $email ?>">
+            <input type="email" id="email" name="email" class="form-control" value="<?php echo $email ?>" required>
 
 
 
@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="form-check">
                 <input <?php if (in_array('Cable', $aptitudes)): ?> checked <?php endif ?> name="aptitudes[]"
-                    value="Cable" class="form-check-input" type="checkbox" value="" id="servicio-cable">
+                    value="Cable" class="form-check-input" type="checkbox" value="" id="servicio-cable" >
                 <label class="form-check-label" fosr="servicio-cable">
                     HTML
                 </label>
@@ -172,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
             <label for="archivo" class="form-label mt-3">Adjunte su factura: </label>
-            <input type="file" id="archivo" name="archivo" class="form-control">
+            <input type="file" id="archivo" name="archivo" class="form-control" required>
 
 
             <button type="submit" class="btn btn-primary mt-2">Enviar</button>
