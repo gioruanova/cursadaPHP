@@ -1,0 +1,35 @@
+[
+    {
+        "id": "16962030495947464",
+        "nombre": "Postulante Juanito",
+        "email": "jruanova.dev@gmail.com",
+        "password": "123456",
+        "archivo": "cvs\/1696203049CVB.txt",
+        "rol": "Postulante"
+    },
+    {
+        "id": "16962119006611592",
+        "nombre": "Admin Pepe",
+        "email": "jruanova1987@gmail.com",
+        "password": "789456",
+        "archivo": "cvs\/1696211900fb fx.txt",
+        "rol": "Admin"
+    },
+    {
+        "id": "16962119628963099",
+        "nombre": "Empleado Jose",
+        "email": "jorge.r@saffire.com",
+        "password": "456456",
+        "archivo": "cvs\/1696211962fb fx.txt",
+        "rol": "Empleado"
+    },
+    {
+        "id": "16962119628963099",
+        "nombre": "Empleado Mengano",
+        "email": "jorge.r@saffire.com",
+        "password": "456456",
+        "archivo": "cvs\/1696211962fb fx.txt",
+        "rol": "Empleado"
+    }
+    
+]

@@ -36,14 +36,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
+
+
     if (count($errores) > 0) {
         $errores[] = "Antes de subir el archivo debe completar todos los campos";
+    } elseif ($archivo['error'] > 0) {
+        $errores[] = 'Error en la carga del archivo';
     } else {
         if (pathinfo($archivo['full_path'], PATHINFO_EXTENSION) == "docx" || pathinfo($archivo['full_path'], PATHINFO_EXTENSION) == "pdf") {
             $archivo_desde = $archivo['tmp_name'];
             $archivo_hacia = 'uploads/' . time() . $archivo['name'];
             move_uploaded_file($archivo_desde, $archivo_hacia);
+            var_dump($archivo);
         } else {
+
             $errores[] = 'El formato de archivo debe ser .DOCX o PDF unicamente';
         }
     }
@@ -139,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="form-check">
                 <input <?php if (in_array('Cable', $aptitudes)): ?> checked <?php endif ?> name="aptitudes[]"
-                    value="Cable" class="form-check-input" type="checkbox" value="" id="servicio-cable" >
+                    value="Cable" class="form-check-input" type="checkbox" value="" id="servicio-cable">
                 <label class="form-check-label" fosr="servicio-cable">
                     HTML
                 </label>
