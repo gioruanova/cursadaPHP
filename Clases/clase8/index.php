@@ -15,13 +15,20 @@ $productos = $consulta->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurante > SQL</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>PHP Restaurant</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <style>
         .nuevoPrecio {
             color: green;
@@ -32,65 +39,74 @@ $productos = $consulta->fetchAll(PDO::FETCH_ASSOC);
             text-decoration: line-through;
         }
     </style>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="sb-nav-fixed">
 
+    <!-- ---IMPORT NAVBAR--- -->
+    <?php require('layouts/_navbar.php') ?>
+    <!-- ---IMPORT NAVBAR--- -->
 
+    <div id="layoutSidenav">
 
-    <!-- ----NAVBAR---- -->
+        <!-- ---IMPORT SIDEBAR--- -->
+        <?php require('layouts/_sidebar.php') ?>
+        <!-- ---IMPORT SIDEBAR--- -->
 
-    <!-- ----NAVBAR---- -->
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">Lista de productos</h1>
+                    <div class="row">
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            Productos en base de datos
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center"> Categoría </th>
+                                    <th class="text-center"> Nombre </th>
+                                    <th class="text-center"> Precio </th>
+                                </tr>
+                                <?php
+                                foreach ($productos as $comidas) {
+                                    echo "<tr>";
+                                    echo "<td class='text-center'> <img src='img/iconos/{$comidas['categoria']}.png' alt=''> {$comidas['categoria']} </td>";
+                                    echo "<td class='text-center'> {$comidas['nombre']} </td>";
+                                    if ($comidas['descuento'] == 0) {
+                                        echo "<td class='text-center'> $ {$comidas['precio']} </td>";
+                                    } else {
+                                        echo "<td class='text-center'><span class='nuevoPrecio'>$" . ($comidas['precio'] - $comidas['descuento']) . "</span> <span class='precioViejo'>$" . ($comidas['precio']) . "</span> </td>";
+                                    }
+                                    echo "</tr>";
+                                }
+                                ?>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
 
+            <!-- ---IMPORT FPPTER--- -->
+            <?php require('layouts/_footer.php') ?>
+            <!-- ---IMPORT FPPTER--- -->
 
-
-    <div class="container mt-5 pt-5">
-        <h1 class="text text-center"> Menú </h1>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th class="text-center"> Categoría </th>
-                    <th class="text-center"> Nombre </th>
-                    <th class="text-center"> Precio </th>
-                </tr>
-
-
-
-                <?php
-                foreach ($productos as $comidas) {
-                    echo "<tr>";
-                    echo "<td class='text-center'> <img src='img/iconos/{$comidas['categoria']}.png' alt=''> {$comidas['categoria']} </td>";
-                    echo "<td class='text-center'> {$comidas['nombre']} </td>";
-
-                    if ($comidas['descuento'] == 0) {
-                        echo "<td class='text-center'> $ {$comidas['precio']} </td>";
-                    } else {
-
-                        echo "<td class='text-center'><span class='nuevoPrecio'>$" . ($comidas['precio'] - $comidas['descuento']) . "</span> <span class='precioViejo'>$" . ($comidas['precio']) . "</span> </td>";
-
-                    }
-
-                    echo "</tr>";
-                }
-                ?>
-
-
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
+        </div>
     </div>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
-        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
-        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+    <script src="js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/chart-area-demo.js"></script>
+    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
+    <script src="js/datatables-simple-demo.js"></script>
 </body>
 
 </html>
