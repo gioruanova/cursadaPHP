@@ -2,17 +2,8 @@
 
 // Importo el archivo
 require_once('_conexion.php');
-
-// preparo la consulta
-$consulta = $conexion->prepare('SELECT nombre, precio, descuento, categoria FROM productos');
-
-// ejecuto consulta
-$consulta->execute();
-
-// recupero la lista
-$productos = $consulta->fetchAll(PDO::FETCH_ASSOC);
-
-
+require_once('consultas/consultas_productos.php');
+$productos = getProductos($conexion);
 
 ?>
 
@@ -43,61 +34,46 @@ $productos = $consulta->fetchAll(PDO::FETCH_ASSOC);
 
 <body class="sb-nav-fixed">
 
-    <!-- ---IMPORT NAVBAR--- -->
-    <?php require('layouts/_navbar.php') ?>
-    <!-- ---IMPORT NAVBAR--- -->
 
-    <div id="layoutSidenav">
-
-        <!-- ---IMPORT SIDEBAR--- -->
-        <?php require('layouts/_sidebar.php') ?>
-        <!-- ---IMPORT SIDEBAR--- -->
-
-        <div id="layoutSidenav_content">
-            <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">Lista de productos</h1>
-                    <div class="row">
-                    </div>
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            Productos en base de datos
-                        </div>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th class="text-center"> Categoría </th>
-                                    <th class="text-center"> Nombre </th>
-                                    <th class="text-center"> Precio </th>
-                                </tr>
-                                <?php
-                                foreach ($productos as $comidas) {
-                                    echo "<tr>";
-                                    echo "<td class='text-center'> <img src='img/iconos/{$comidas['categoria']}.png' alt=''> {$comidas['categoria']} </td>";
-                                    echo "<td class='text-center'> {$comidas['nombre']} </td>";
-                                    if ($comidas['descuento'] == 0) {
-                                        echo "<td class='text-center'> $ {$comidas['precio']} </td>";
-                                    } else {
-                                        echo "<td class='text-center'><span class='nuevoPrecio'>$" . ($comidas['precio'] - $comidas['descuento']) . "</span> <span class='precioViejo'>$" . ($comidas['precio']) . "</span> </td>";
-                                    }
-                                    echo "</tr>";
-                                }
-                                ?>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Lista de productos</h1>
+            <div class="row">
+            </div>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Productos en base de datos
                 </div>
-            </main>
-
-            <!-- ---IMPORT FPPTER--- -->
-            <?php require('layouts/_footer.php') ?>
-            <!-- ---IMPORT FPPTER--- -->
-
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center"> Categoría </th>
+                            <th class="text-center"> Nombre </th>
+                            <th class="text-center"> Precio </th>
+                        </tr>
+                        <?php
+                        foreach ($productos as $prod) {
+                            echo "<tr>";
+                            echo "<td class='text-center'> <img src='img/iconos/{$prod['categoria']}.png' alt=''> {$prod['categoria']} </td>";
+                            echo "<td class='text-center'> {$prod['nombre']} </td>";
+                            if ($prod['descuento'] == 0) {
+                                echo "<td class='text-center'> $ {$prod['precio']} </td>";
+                            } else {
+                                echo "<td class='text-center'><span class='nuevoPrecio'>$" . ($prod['precio'] - $prod['descuento']) . "</span> <span class='precioViejo'>$" . ($prod['precio']) . "</span> </td>";
+                            }
+                            echo "</tr>";
+                        }
+                        ?>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
+    </main>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
