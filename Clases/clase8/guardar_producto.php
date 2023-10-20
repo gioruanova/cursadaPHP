@@ -24,8 +24,7 @@ if (isset($_GET['id'])) {
 $errores = [];
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-{
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $errores = validarProductos($producto);
 
@@ -114,15 +113,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
                                 <div class=" mb-3">
                                     <label for="precio" class="form-label">Precio:</label>
-                                    <input type="number" name="precio" class="form-control" id="precio"
+                                    <input type="number" step="any" name="precio" class="form-control" id="precio"
                                         placeholder="Ingrese un precio para el producto"
                                         value="<?php echo $producto['precio'] ?>" />
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="descuento" class="form-label">Descuento:</label>
-                                    <input type="number" class="form-control" id="descuento" name="descuento"
-                                        placeholder="Ingrese un descuento para el producto"
+                                    <input type="number" step="any" class="form-control" id="descuento"
+                                        name="descuento" placeholder="Ingrese un descuento para el producto"
                                         value="<?php echo $producto['descuento'] ?>" />
                                 </div>
 
@@ -135,7 +134,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
                                 <div class="mb-3">
                                     <label for="descripcion" class="form-label">Descripcion:</label>
-                                    <textarea cols="1" rows="3" class="form-control" id="descripcion" name="descripcion" placeholder="Ingrese una descripcion para el producto"><?php echo $producto['descripcion'] ?></textarea>
+                                    <textarea cols="1" rows="3" class="form-control" id="descripcion" name="descripcion"
+                                        placeholder="Ingrese una descripcion para el producto">
+                                        <?php echo $producto['descripcion'] ?>
+                                    </textarea>
 
                                 </div>
                                 <div>
