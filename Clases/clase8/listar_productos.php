@@ -84,7 +84,8 @@ $productos = getProductos($conexion);
                                             <a class='m-2 mt-0 mb-0'
                                                 href="guardar_producto.php?id=<?php echo $prod['id'] ?>"><button
                                                     class='btn btn-primary'>Modificar</button></a>
-                                            <a class='m-0' href=''><button class='btn btn-danger'>Eliminar</button></a>
+                                            <a href="eliminar_producto.php?id=<?php echo $prod['id'] ?>" class='m-0'><button
+                                                    class='btn btn-danger'>Eliminar</button></a>
                                         </td>
                                     </tr>
 

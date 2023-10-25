@@ -134,10 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                                 <div class="mb-3">
                                     <label for="descripcion" class="form-label">Descripcion:</label>
-                                    <textarea cols="1" rows="3" class="form-control" id="descripcion" name="descripcion"
-                                        placeholder="Ingrese una descripcion para el producto">
-                                        <?php echo $producto['descripcion'] ?>
-                                    </textarea>
+                                    <textarea cols="1" rows="3" class="form-control" id="descripcion" name="descripcion" placeholder="Ingrese una descripcion para el producto"><?php echo $producto['descripcion'] ?></textarea>
 
                                 </div>
                                 <div>
